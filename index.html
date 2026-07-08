@@ -1,1 +1,174 @@
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Data</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            margin: 20px;
+        }
+
+        .datainput {
+            display: grid;
+            gap: 10px;
+            max-width: 400px;
+            margin: auto;
+        }
+
+        input,
+        select,
+        button {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            cursor: pointer;
+            background: green;
+            color: white;
+            border: none;
+        }
+
+        #box {
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .student-card {
+            width: 280px;
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, .2);
+            text-align: center;
+        }
+
+        .student-card h2 {
+            color: green;
+            margin: 10px 0;
+        }
+
+        .student-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid green;
+            margin-bottom: 10px;
+        }
+
+        p {
+            text-align: left;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="datainput">
+
+        <input type="text" placeholder="Name" id="name">
+
+        <input type="number" name="" id="mobile" placeholder=" enter contact">
+
+        <input type="email" name="" id="email" placeholder=" enter email">
+        <input placeholder="DOB" id="dob" type="date">
+
+        <select id="class">
+            <option value="MSc">MSc</option>
+            <option value="MCA">MCA</option>
+        </select>
+
+        <select name="" id="sem">
+            <option value="1">1st sem</option>
+            <option value="2">2nd sem</option>
+            <option value="3">3rd sem</option>
+        </select>
+
+<select name="" id="batch">
+    <option value="2025-2027">2025-2027</option>
+    <option value="2024-2026">2024-2026</option>
+    <option value="2023-2025">2023-2025</option>
+    <option value="2022-2024">2022-2024</option>
+    <option value="2021-2023">2021-2023</option>
+</select>
+
+        <button onclick="handleok()">Submit</button>
+
+    </div>
+
+    <section>
+        <div id="box"></div>
+    </section>
+</body>
+
+<script>
+    function handleok() {
+        let NAME = document.getElementById('name').value;
+        let CLASS = document.getElementById('class').value;
+        let SEM = document.getElementById('sem').value;
+        let DOB = document.getElementById('dob').value;
+        let MOBILE = document.getElementById('mobile').value;
+        let EMAIL = document.getElementById('email').value;
+        let BATCH = document.getElementById('batch').value;
+        let object = { NAME,CLASS,SEM,DOB,MOBILE,EMAIL,BATCH};
+
+        let data = JSON.parse(localStorage.getItem("MARKSHEET")) || [];
+        data.push(object);
+
+        localStorage.setItem("MARKSHEET", JSON.stringify(data));
+        call();
+    }
+    call();
+
+    function call() {
+        let data = JSON.parse(localStorage.getItem("MARKSHEET")) || [];
+        document.getElementById('box').innerHTML =
+            data.map(i => (
+                `<div>
+                <table>
+        <tr>
+            <td> NAME : </td>
+            <td><p>${i.NAME} </p></td>
+        </tr>
+        <tr>
+            <td> CLASS : </td>
+            <td><p> ${i.CLASS}</p></td>
+        </tr>
+        <tr>
+            <td> SEM : </td>
+            <td><p> ${i.SEM}</p></td>
+        </tr>
+        <tr>
+            <td> DOB : </td>
+            <td><p> ${i.DOB}</p></td>
+        </tr>
+        <tr>
+            <td> MOBILE : </td>
+            <td><p> ${i.MOBILE}</p></td>
+        </tr>
+        <tr>
+            <td> EMAIL : </td>
+            <td><p> ${i.EMAIL}</p></td>
+        </tr>
+        <tr>
+            <td> BATCH : </td>
+            <td><p> ${i.BATCH}</p></td>
+        </tr>
+    </table>
+            </div>`
+            )).join("");
+    }
+</script>
+
+</html>
