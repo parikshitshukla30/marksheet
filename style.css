@@ -1,0 +1,62 @@
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            margin: 20px;
+        }
+
+        .datainput {
+            display: grid;
+            gap: 10px;
+            max-width: 400px;
+            margin: auto;
+        }
+
+        input,
+        select,
+        button {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            cursor: pointer;
+            background: green;
+            color: white;
+            border: none;
+        }
+
+        #box {
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .student-card {
+            width: 280px;
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, .2);
+            text-align: center;
+        }
+
+        .student-card h2 {
+            color: green;
+            margin: 10px 0;
+        }
+
+        .student-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid green;
+            margin-bottom: 10px;
+        }
+
+        p {
+            text-align: left;
+        }
